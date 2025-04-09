@@ -1,0 +1,7 @@
+version: "3"
+services:
+  Insignia-Backend:
+    build: .
+    env_file: .env
+    ports:
+      - 8989:8081
