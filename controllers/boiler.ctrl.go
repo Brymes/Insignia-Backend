@@ -7,6 +7,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// TODO after Insert on BoilerInstallation or BoilerRepir, add event to calendar on an available date and send mail notifications using mailjet to client email and config.InsigniaEmail
+
 func CreateBoilerInstallation(c *gin.Context) {
 	var (
 		booking   models.BoilerBooking
@@ -33,6 +35,7 @@ func CreateBoilerInstallation(c *gin.Context) {
 	booking.BoilerType = string(validator.BoilerType)
 	booking.BoilerAge = string(validator.BoilerAge)
 	booking.BoilerMounting = string(validator.BoilerMounting)
+	booking.BoilerModel = validator.BoilerModel
 	booking.Reason = validator.InstallationReason
 	booking.OtherReason = validator.OtherReason
 	booking.ExpressInstallation = validator.ExpressInstallation
