@@ -1,0 +1,178 @@
+{
+	"info": {
+		"_postman_id": "e6b117ca-e335-4768-9ed9-b9599bcbac2a",
+		"name": "Insignia",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13151831"
+	},
+	"item": [
+		{
+			"name": "Boiler Services",
+			"item": [
+				{
+					"name": "Boiler Installation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_type\": \"Homeowner\",\n    \"property_type\": \"Detached house\",\n    \"bedroom_count\": \"2-4\",\n    \"bathroom_count\": \"1-2\",\n    \"boiler_fuel_type\": \"Gas\",\n    \"boiler_type\": \"Combi\",\n    \"boiler_age\": \"10-20 years\",\n    \"boiler_mounting\": \"Wall-mounted\",\n    \"boiler_model\": \"Worcester Bosch Greenstar 4000\",\n    \"installation_reason\": \"My boiler is old and inefficient\",\n    \"other_reason\": \"\",\n    \"express_installation\": false,\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"phone\": \"07700900000\",\n    \"address\": \"123 Example Street, London\",\n    \"postcode\": \"SW1A 1AA\",\n    \"preferred_date\": \"2023-08-15\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/install",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"install"
+							]
+						},
+						"description": "Create a new boiler installation booking"
+					},
+					"response": []
+				},
+				{
+					"name": "Boiler Repair",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_type\": \"Landlord\",\n    \"property_type\": \"Flat\",\n    \"bedroom_count\": \"1-2\",\n    \"bathroom_count\": \"1-2\",\n    \"boiler_fuel_type\": \"Gas\",\n    \"boiler_type\": \"System\",\n    \"boiler_age\": \"0-10 years\",\n    \"boiler_mounting\": \"Wall-mounted\",\n    \"issue_type\": \"No heating or hot water\",\n    \"other_issue\": \"\",\n    \"first_name\": \"Jane\",\n    \"last_name\": \"Smith\",\n    \"email\": \"jane.smith@example.com\",\n    \"phone\": \"07700900001\",\n    \"address\": \"456 Example Avenue, Manchester\",\n    \"postcode\": \"M1 1AA\",\n    \"preferred_date\": \"2023-08-10\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/repair",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"repair"
+							]
+						},
+						"description": "Create a new boiler repair booking"
+					},
+					"response": []
+				},
+				{
+					"name": "Express Installation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_type\": \"Homeowner\",\n    \"property_type\": \"Semi-detached house\",\n    \"bedroom_count\": \"4-6\",\n    \"bathroom_count\": \"2-4\",\n    \"boiler_fuel_type\": \"LPG\",\n    \"boiler_type\": \"Combi\",\n    \"boiler_age\": \"20-30 years\",\n    \"boiler_mounting\": \"Floor-standing\",\n    \"boiler_model\": \"Vaillant ecoTEC plus 835\",\n    \"installation_reason\": \"My boiler isn't working\",\n    \"other_reason\": \"\",\n    \"express_installation\": true,\n    \"first_name\": \"Robert\",\n    \"last_name\": \"Johnson\",\n    \"email\": \"robert.johnson@example.com\",\n    \"phone\": \"07700900002\",\n    \"address\": \"789 Example Road, Birmingham\",\n    \"postcode\": \"B1 1AA\",\n    \"preferred_date\": \"2023-08-05\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/install",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"install"
+							]
+						},
+						"description": "Create a new express boiler installation booking"
+					},
+					"response": []
+				},
+				{
+					"name": "Installation with Other Reason",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_type\": \"Landlord\",\n    \"property_type\": \"Bungalow\",\n    \"bedroom_count\": \"2-4\",\n    \"bathroom_count\": \"1-2\",\n    \"boiler_fuel_type\": \"Oil\",\n    \"boiler_type\": \"Back boiler\",\n    \"boiler_age\": \"10-20 years\",\n    \"boiler_mounting\": \"Floor-standing\",\n    \"boiler_model\": \"Baxi Platinum 40\",\n    \"installation_reason\": \"Other\",\n    \"other_reason\": \"Renovating property and need new heating system\",\n    \"express_installation\": false,\n    \"first_name\": \"Sarah\",\n    \"last_name\": \"Williams\",\n    \"email\": \"sarah.williams@example.com\",\n    \"phone\": \"07700900003\",\n    \"address\": \"101 Example Lane, Edinburgh\",\n    \"postcode\": \"EH1 1AA\",\n    \"preferred_date\": \"2023-08-20\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/install",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"install"
+							]
+						},
+						"description": "Create a new boiler installation booking with a custom reason"
+					},
+					"response": []
+				},
+				{
+					"name": "Repair with Other Issue",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_type\": \"Homeowner\",\n    \"property_type\": \"Terrace\",\n    \"bedroom_count\": \"2-4\",\n    \"bathroom_count\": \"1-2\",\n    \"boiler_fuel_type\": \"Gas\",\n    \"boiler_type\": \"Combi\",\n    \"boiler_age\": \"0-10 years\",\n    \"boiler_mounting\": \"Wall-mounted\",\n    \"issue_type\": \"Other\",\n    \"other_issue\": \"Boiler keeps resetting and displaying error code F75\",\n    \"first_name\": \"Michael\",\n    \"last_name\": \"Brown\",\n    \"email\": \"michael.brown@example.com\",\n    \"phone\": \"07700900004\",\n    \"address\": \"202 Example Drive, Cardiff\",\n    \"postcode\": \"CF10 1AA\",\n    \"preferred_date\": \"2023-08-25\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/repair",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"repair"
+							]
+						},
+						"description": "Create a new boiler repair booking with a custom issue"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for boiler installation and repair services"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "http://localhost:8081",
+			"type": "string"
+		}
+	]
+}

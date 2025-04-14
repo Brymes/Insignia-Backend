@@ -1,15 +1,15 @@
-FROM golang:1.22.4 as builder
+FROM golang:1.23 as builder
 
 WORKDIR /app
 
 COPY . .
 
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o soro .
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o insignia .
 
 FROM alpine:latest
 
 RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
 
-COPY --from=builder /app/soro .
+COPY --from=builder /app/insignia .
 
-ENTRYPOINT ["./soro"]
+ENTRYPOINT ["./insignia"]
