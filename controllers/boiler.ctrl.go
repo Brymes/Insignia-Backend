@@ -3,11 +3,10 @@ package controllers
 import (
 	"Insignia-Backend/models"
 	"Insignia-Backend/schemas"
+	"fmt"
 
 	"github.com/gin-gonic/gin"
 )
-
-// TODO after Insert on BoilerInstallation or BoilerRepir, add event to calendar on an available date and send mail notifications using mailjet to client email and config.InsigniaEmail
 
 func CreateBoilerInstallation(c *gin.Context) {
 	var (
@@ -41,10 +40,29 @@ func CreateBoilerInstallation(c *gin.Context) {
 	booking.ExpressInstallation = validator.ExpressInstallation
 	booking.Status = "pending"
 
+	// Add calendar sync functionality
+	minDays := 4
+	if booking.ExpressInstallation {
+		minDays = 2
+	}
+
+	// Schedule appointment and get the scheduled date
+	appointmentDate, err := scheduleAppointment(booking.BookingType, minDays, validator.FirstName, validator.LastName, validator.Address)
+	if err != nil {
+		handler.Status, handler.Message = 404, "Failed to schedule appointment in calendar"
+		handler.Logger.Panicln(err)
+		return
+	}
+
 	// Insert booking into database
 	handler.Insert(&booking, handler.Logger)
 
-	// TODO: Add calendar sync functionality here
+	// Send email notification with all booking details
+	err = sendBookingConfirmation(booking, validator.Email, validator.FirstName, validator.LastName,
+		appointmentDate, validator.Address, validator.Postcode)
+	if err != nil {
+		handler.Logger.Println(fmt.Sprintf("Failed to send email notification: %v", err))
+	}
 
 	handler.Success, handler.Message = true, "Boiler installation booking created successfully"
 }
@@ -79,23 +97,26 @@ func CreateBoilerRepair(c *gin.Context) {
 	booking.OtherReason = validator.OtherIssue
 	booking.Status = "pending"
 
+	// Add calendar sync functionality - repairs always use standard scheduling (T+4)
+	minDays := 4
+
+	// Schedule appointment and get the scheduled date
+	appointmentDate, err := scheduleAppointment(booking.BookingType, minDays, validator.FirstName, validator.LastName, validator.Address)
+	if err != nil {
+		handler.Status, handler.Message = 404, "Failed to schedule appointment in calendar"
+		handler.Logger.Panicln(err)
+		return
+	}
+
 	// Insert booking into database
 	handler.Insert(&booking, handler.Logger)
 
-	// TODO: Add calendar sync functionality here
+	// Send email notification with all booking details
+	err = sendBookingConfirmation(booking, validator.Email, validator.FirstName, validator.LastName,
+		appointmentDate, validator.Address, validator.Postcode)
+	if err != nil {
+		handler.Logger.Println(fmt.Sprintf("Failed to send email notification: %v", err))
+	}
 
 	handler.Success, handler.Message = true, "Boiler repair booking created successfully"
 }
-
-// func GetOrganizationBookings(c *gin.Context) {
-// 	var (
-// 		bookings []models.BoilerBooking
-// 		handler  = schemas.NewHandler("Get-Organization-Bookings", "")
-// 		user     = authMacro(c, models.SoroAdmin, handler)
-// 	)
-
-// 	defer handler.SendResponse(c)
-
-// 	handler.FetchByOrganizationID(user.OrganizationID, &bookings, handler.Logger)
-// 	handler.Success, handler.Message, handler.ResponseData = true, "Bookings fetched successfully", bookings
-// }

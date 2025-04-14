@@ -11,12 +11,6 @@ import (
 	"google.golang.org/api/option"
 )
 
-var CalendarSVC CalendarService
-
-func init() {
-// TODO initialize CalendarSVC with NewCalendarService
-}
-
 // TODO Use Google Calnendar API to create events, macimum of 2 bookings in a day, maximum of 2 events in a day, return error if more than 2 bookings in a day, return error if more than 2 events in a day
 // TODO function to check all dates from Today to 30 days from Today, return array of dates with > 2 events in a day
 

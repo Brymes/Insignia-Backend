@@ -7,11 +7,15 @@ import (
 	"os"
 )
 
-var ()
+var (
+	InsigniaEmail                             = "timothy@unyte.africa"
+	MailjetAPIKeyPublic, MailjetAPIKeyPrivate string
+)
 
 func LoadEnv() {
 	_ = godotenv.Load()
-
+	MailjetAPIKeyPublic = GetEnv("MJ_APIKEY_PUBLIC")
+	MailjetAPIKeyPrivate = GetEnv("MJ_APIKEY_PRIVATE")
 }
 
 func GetEnv(key string) string {
