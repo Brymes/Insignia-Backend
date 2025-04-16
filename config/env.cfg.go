@@ -9,6 +9,7 @@ import (
 
 var (
 	InsigniaEmail                             = "timothy@unyte.africa"
+	InsigniaPhone                             = "Insignia Phone"
 	MailjetAPIKeyPublic, MailjetAPIKeyPrivate string
 )
 
